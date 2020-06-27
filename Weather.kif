@@ -1130,13 +1130,14 @@ deviation measures the amount of variation or dispersion of the numbers in the l
 
 (=>
   (and
-    (subProcess ?WW WaterWave)
+    (instance ?WW WaterWave)
     (waveHeight ?WW ?WH))
-  (exists (?LIST ?WA)
+  (exists (?LIST ?WA ?U)
     (and
       (inList ?WH ?LIST)
       (instance ?WA WaterArea)
       (eventLocated ?WW ?WA)
+      (instance ?U LengthMeasure)
       (significantWaveHeight ?WA
         (WhenFn ?WW) 
         (MeasureFn ?SWH ?U))
@@ -1144,8 +1145,6 @@ deviation measures the amount of variation or dispersion of the numbers in the l
         (MultiplicationFn 4
           (StandardDeviationFn ?LIST))))))
                 
-(subclass HeavySurf WeatherProcess)
-(subclass HeavySurf WaterMotion)
 (documentation HeavySurf EnglishLanguage "&%HeavySurf is when the &%significantWaveHeight 
 of the &%WaterWaves over a &%SurfZone is greater than 13 &%FootLength or 4 &%Meter.")
 (documentation HeavySurf ChineseLanguage "&%HeavySurf 是当碎波带 (&%SurfZone) 出现海浪
@@ -1175,9 +1174,42 @@ of the &%WaterWaves over a &%SurfZone is greater than 13 &%FootLength or 4 &%Met
         (instance ?WW WaterWave)
         (subProcess ?WW ?HS)
         (eventLocated ?WW ?SZ)))))
-        
+ 
+; extra definitions for flooding which situated in Mid-level ontology.kif
+; to say that "Flooding occurs when an area of land that is unlikely
+; to be submerged in water is covered by water.
+
+(=>
+  (and
+    (instance ?F Flooding)
+    (instance ?L LandArea)
+    (eventLocated ?F ?L)
+    (instance ?T TimePoint)
+    (before ?T (WhenFn ?F)))
+  (modalAttribute 
+    (holdsDuring ?T
+      (instance ?L SubmergedLandArea))
+    Unlikely))
+
+(documentation CoastalFlooding EnglishLanguage "&%CoastalFlooding is a &%Flooding that
+occurs at &%Seacoast.")
+(documentation CoastalFlooding ChineseLanguage "沿海洪水 (&%CoastalFlooding)是出现在海岸
+(&%Seacoast)的洪水(&%Flooding)。")
 (subclass CoastalFlooding Flooding)
+
+(=>
+  (instance ?CF CoastalFlooding)
+  (exists (?AREA)
+    (and
+      (instance ?AREA Seacoast)
+      (eventLocated ?CF ?AREA))))
+
+(documentation FlashFlooding EnglishLanguage "&%FlashFlooding are floods that take
+fewer than 6 hours from sudden precipitation or melting of glaciers to the onset of &%Flooding.")
+(documentation FlashFlooding ChineseLanguage "山洪暴发(&%FlashFlooding)是在开始降雨或融雪6个小时内发生的洪涝
+(&%Flooding)。")
 (subclass FlashFlooding Flooding)
+
 (subclass MaritimeHazard LandForm) 
 (subclass Reef MaritimeHazard) 
 (subclass Shoal MaritimeHazard)
