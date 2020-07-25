@@ -247,13 +247,13 @@ relation ?REL must be a subclass of ?CLASS.")
       (subclass ?CLASS1 ?CLASS2)
       (subclass ?CLASS2 ?CLASS1)))
 
-(instance equal BinaryPredicate)
-(instance equal EquivalenceRelation)
-(instance equal RelationExtendedToQuantities)
-(domain equal 1 Entity)
-(domain equal 2 Entity)
-(documentation equal EnglishLanguage "(equal ?ENTITY1 ?ENTITY2) is true just in case
-?ENTITY1 is identical with ?ENTITY2.")
+;(instance equal BinaryPredicate)
+;(instance equal EquivalenceRelation)
+;(instance equal RelationExtendedToQuantities)
+;(domain equal 1 Entity)
+;(domain equal 2 Entity)
+;(documentation equal EnglishLanguage "(equal ?ENTITY1 ?ENTITY2) is true just in case
+;?ENTITY1 is identical with ?ENTITY2.")
 
 (=>
    (equal ?THING1 ?THING2)
@@ -1406,6 +1406,7 @@ be represented visually through writing, although not all
 (instance language BinaryPredicate)
 (domain language 1 ContentBearingPhysical)
 (domain language 2 Language)
+(format EnglishLanguage language "%2 is %n a &%Language of %1.")
 
 (documentation language EnglishLanguage "A relation between a &%ContentBearingPhysical
 and a &%Language in that &%Entity.  Note that this could be a sign language
@@ -1586,16 +1587,16 @@ is the &%Class of all &%Processes that require exactly one &%agent in order to o
 (=>
     (and
       (instance ?PROC SingleAgentProcess)
-      (agent ?PROC ?AGENT_1)
-      (agent ?PROC ?AGENT_2))
+      (agent ?PROC ?AGENT1)
+      (agent ?PROC ?AGENT2))
     (and
-      (equal ?AGENT_1 ?AGENT_2)
+      (equal ?AGENT1 ?AGENT2)
       (not
-        (exists (?AGENT_3)
+        (exists (?AGENT3)
           (and
-            (agent ?PROC ?AGENT_3)
+            (agent ?PROC ?AGENT3)
             (not
-              (equal ?AGENT_3 ?AGENT_1)))))))
+              (equal ?AGENT3 ?AGENT1)))))))
 
 (subclass Abstract Entity)
 (disjointDecomposition Abstract Quantity Attribute SetOrClass Relation Proposition)
@@ -7322,10 +7323,10 @@ diameter of the &%Circle ?CIRCLE has a length of ?LENGTH.")
 
 (=>
   (diameter ?CIRCLE ?LENGTH)
-  (exists (?N__HALF ?U__HALF)
+  (exists (?NHALF ?UHALF)
     (and
-      (radius ?CIRCLE (MeasureFn ?N__HALF ?U__HALF))
-      (equal (MeasureFn (MultiplicationFn ?N__HALF 2) ?U__HALF) ?LENGTH))))
+      (radius ?CIRCLE (MeasureFn ?NHALF ?UHALF))
+      (equal (MeasureFn (MultiplicationFn ?NHALF 2) ?UHALF) ?LENGTH))))
 
 (instance distance SingleValuedRelation)
 (instance distance SpatialRelation)
@@ -8511,6 +8512,7 @@ divisible by 400 (this latter case is known as a leap century).")
 (instance successorClass TransitiveRelation)
 (domain successorClass 1 SetOrClass)
 (domain successorClass 2 SetOrClass)
+(format EnglishLanguage successorClass "%2 is %n the &%successorClass of %2.")
 
 (documentation successorClass EnglishLanguage "The next class is a sequence
 of classes, such as days of the week. The first argument is 'prior' to the
@@ -8878,11 +8880,11 @@ consecutive days that make up &%ThisSeptember.  Note that one can obtain
 the number of instances of this &%Class by using the function &%CardinalityFn.")
 
 (=>
-   (equal (TemporalCompositionFn ?INTERVAL ?INTERVAL-TYPE) ?CLASS)
+   (equal (TemporalCompositionFn ?INTERVAL ?INTERVALTYPE) ?CLASS)
    (forall (?TIME1 ?TIME2)
       (=>
          (and
-            (instance ?TIME1 ?INTERVAL-TYPE)
+            (instance ?TIME1 ?INTERVALTYPE)
             (instance ?TIME2 ?CLASS))
          (exists (?DURATION)
             (and
@@ -8890,7 +8892,7 @@ the number of instances of this &%Class by using the function &%CardinalityFn.")
                (duration ?TIME2 ?DURATION))))))
 
 (=>
-   (equal (TemporalCompositionFn ?INTERVAL ?INTERVAL-TYPE) ?CLASS)
+   (equal (TemporalCompositionFn ?INTERVAL ?INTERVALTYPE) ?CLASS)
    (forall (?TIME1 ?TIME2)
       (=>
          (and
@@ -8904,21 +8906,21 @@ the number of instances of this &%Class by using the function &%CardinalityFn.")
             (earlier ?TIME2 ?TIME1)))))
 
 (=>
-   (equal (TemporalCompositionFn ?INTERVAL ?INTERVAL-TYPE) ?CLASS)
+   (equal (TemporalCompositionFn ?INTERVAL ?INTERVALTYPE) ?CLASS)
    (exists (?TIME)
       (and
          (instance ?TIME ?CLASS)
          (starts ?TIME ?INTERVAL))))
 
 (=>
-   (equal (TemporalCompositionFn ?INTERVAL ?INTERVAL-TYPE) ?CLASS)
+   (equal (TemporalCompositionFn ?INTERVAL ?INTERVALTYPE) ?CLASS)
    (exists (?TIME)
       (and
          (instance ?TIME ?CLASS)
          (finishes ?TIME ?INTERVAL))))
 
 (=>
-   (equal (TemporalCompositionFn ?INTERVAL ?INTERVAL-TYPE) ?CLASS)
+   (equal (TemporalCompositionFn ?INTERVAL ?INTERVALTYPE) ?CLASS)
    (forall (?TIME1)
       (=>
          (and
@@ -8942,7 +8944,7 @@ the number of instances of this &%Class by using the function &%CardinalityFn.")
                (meetsTemporally ?TIME2 ?TIME1))))))
 
 (=>
-   (equal (TemporalCompositionFn ?INTERVAL ?INTERVAL-TYPE) ?CLASS)
+   (equal (TemporalCompositionFn ?INTERVAL ?INTERVALTYPE) ?CLASS)
    (forall (?TIME)
       (=>
          (and
@@ -9059,6 +9061,7 @@ and not (&%connected ?OBJ2 ?OBJ3).")
 (subrelation overlapsSpatially connected)
 (instance overlapsSpatially ReflexiveRelation)
 (instance overlapsSpatially SymmetricRelation)
+(format EnglishLanguage overlapsSpatially "%1 and %2 is %n &%overlapsSpatially")
 
 (documentation overlapsSpatially EnglishLanguage "(&%overlapsSpatially ?OBJ1 ?OBJ2) means
 that the &%Objects ?OBJ1 and ?OBJ2 have some parts in common.  This is a
@@ -17242,6 +17245,8 @@ of the relation and the third argument is the minimum value.")
 (domain minValue 1 Predicate)
 (domain minValue 2 Integer)
 (domain minValue 3 Quantity)
+(format EnglishLanguage minValue "The &%minValue of %1
+with %2 arguments is %3.")
 
 (=>
   (and
@@ -17257,6 +17262,8 @@ of the relation and the third argument is the maximum value.")
 (domain maxValue 1 Predicate)
 (domain maxValue 2 Integer)
 (domain maxValue 3 Quantity)
+(format EnglishLanguage maxValue "The &%maxValue of %1
+with %2 arguments is %3.")
 
 (=>
   (and
@@ -17272,6 +17279,8 @@ of the relation and the third argument is the minimum value.")
 (domain defaultMinValue 1 Predicate)
 (domain defaultMinValue 2 Integer)
 (domain defaultMinValue 3 Quantity)
+(format EnglishLanguage defaultMinValue "The &%defaultMinValue of
+%1 with %2 arguments is %3.")
 
 (=>
   (and
@@ -17287,7 +17296,8 @@ of the relation and the third argument is the minimum value.")
 (domain defaultMaxValue 1 Predicate)
 (domain defaultMaxValue 2 Integer)
 (domain defaultMaxValue 3 Quantity)
-
+(format EnglishLanguage defaultMaxValue "The &%defalutMaxValue of
+%1 with %2 arguments is %3.")
 (=>
   (and
     (defaultMaxValue ?REL ?ARG ?N)
@@ -17302,6 +17312,8 @@ of the relation and the third argument is the likely value.")
 (domain defaultValue 1 Predicate)
 (domain defaultValue 2 Integer)
 (domain defaultValue 3 Quantity)
+(format EnglishLanguage defaultValue "The &%defaultValue of
+%1 with %2 arguments is %3.")
 
 (=>
   (and
