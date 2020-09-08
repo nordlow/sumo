@@ -148,6 +148,7 @@ is a &%subclass of ?CLASS2, i.e. every &%instance of ?CLASS1 is also an &%instan
 ; (subrelation immediateSubclass subclass)
 (instance immediateSubclass AsymmetricRelation)
 (instance immediateSubclass IntransitiveRelation)
+(instance immediateSubclass BinaryPredicate)
 (domain immediateSubclass 1 SetOrClass)
 (domain immediateSubclass 2 SetOrClass)
 (documentation immediateSubclass EnglishLanguage "A &%SetOrClass ?CLASS1 is an
@@ -883,6 +884,7 @@ widespread intersubjective agreement about the most common cases.")
 
 (instance part SpatialRelation)
 (instance part PartialOrderingRelation)
+(instance part BinaryPredicate)
 (domain part 1 Object)
 (domain part 2 Object)
 
@@ -953,6 +955,7 @@ For example, plastic is a &%material of my computer monitor.  Compare
 (instance contains SpatialRelation)
 (instance contains AsymmetricRelation)
 (instance contains PartialValuedRelation)
+(instance contains BinaryPredicate)
 (disjointRelation contains part)
 (domain contains 1 SelfConnectedObject)
 (domain contains 2 Object)
@@ -1181,6 +1184,7 @@ of sheep.")
 
 ; (subrelation member part)
 (instance member AsymmetricRelation)
+(instance member BinaryPredicate)
 (instance member IntransitiveRelation)
 (domain member 1 Object)
 (domain member 2 Collection)
@@ -1599,7 +1603,7 @@ is the &%Class of all &%Processes that require exactly one &%agent in order to o
               (equal ?AGENT3 ?AGENT1)))))))
 
 (subclass Abstract Entity)
-(disjointDecomposition Abstract Quantity Attribute SetOrClass Relation Proposition)
+(disjointDecomposition Abstract Quantity Attribute SetOrClass Relation Proposition List)
 
 (documentation Abstract EnglishLanguage "Properties or qualities as distinguished from any
 particular embodiment of the properties/qualities in a physical medium.
@@ -2123,15 +2127,15 @@ than once in the &%Set.")
 
 (subclass Relation Abstract)
 (disjointDecomposition Relation BinaryRelation TernaryRelation QuaternaryRelation
-QuintaryRelation VariableArityRelation) (partition Relation Predicate Function List)
+QuintaryRelation VariableArityRelation)
+(partition Relation Predicate Function)
 (partition Relation TotalValuedRelation PartialValuedRelation)
 
-(documentation Relation EnglishLanguage "The &%Class of relations.  There are three kinds
-of &%Relation:  &%Predicate, &%Function, and &%List.  &%Predicates and
+(documentation Relation EnglishLanguage "The &%Class of relations.  There are two kinds
+of &%Relation:  &%Predicate and &%Function.  &%Predicates and
 &%Functions both denote sets of ordered n-tuples.  The difference between
 these two &%Classes is that &%Predicates cover formula-forming operators, while
-&%Functions cover term-forming operators.  A &%List, on the other hand, is a
-particular ordered n-tuple.")
+&%Functions cover term-forming operators. ")
 
 ;; The following part of the ontology covers the various classes under
 ;; 'Relation'.  Most of the content here is taken from frame-ontology,
@@ -2818,7 +2822,7 @@ items.  The two &%subclasses of &%QuaternaryRelation are
 The two &%subclasses of &%QuintaryRelation are &%QuintaryPredicate and
 &%QuaternaryFunction.")
 
-(subclass List Relation)
+(subclass List Abstract)
 
 (documentation List EnglishLanguage "Every &%List is a particular ordered n-tuple of
 items.  Generally speaking, &%Lists are created by means of the &%ListFn
@@ -4373,6 +4377,7 @@ chooses to use ?ENTITY1 to 'stand for' ?ENTITY2.")
       (representsForAgent ?REP ?ENTITY ?AGENT)))
 
 (instance equivalentContentClass EquivalenceRelation)
+(instance equivalentContentClass BinaryPredicate)
 (domainSubclass equivalentContentClass 1 ContentBearingPhysical)
 (domainSubclass equivalentContentClass 2 ContentBearingPhysical)
 
@@ -4422,6 +4427,7 @@ not just for a single instance.")
           (containsInformation ?OBJ1 ?INFO))))))
 
 (instance equivalentContentInstance EquivalenceRelation)
+(instance equivalentContentInstance BinaryPredicate)
 (domain equivalentContentInstance 1 ContentBearingPhysical)
 (domain equivalentContentInstance 2 ContentBearingPhysical)
 (relatedInternalConcept equivalentContentInstance equivalentContentClass)
@@ -5281,23 +5287,26 @@ number of instances in the &%SetOrClass ?CLASS or the number of
 members in the ?CLASS &%Collection.")
 
 ;; comment it out to avoid (instance SetOrClass SetOrClass)
-;(subclass NullSet SetOrClass)
+(subclass NullSet Set)
 
-(documentation NullSet EnglishLanguage "Any &%SetOrClass that contains no instances.")
+(documentation NullSet EnglishLanguage "Any &%Set that contains no &%elements.")
 
 (=>
    (instance ?SET NullSet)
-   (not (exists (?INST) (instance ?INST ?SET))))
+   (not
+     (exists (?INST)
+       (element ?INST ?SET))))
 
 ;; comment it out to avoid (instance SetOrClass SetOrClass)
-;(subclass NonNullSet SetOrClass)
+(subclass NonNullSet Set)
 
-(documentation NonNullSet EnglishLanguage "Any &%SetOrClass that contains at least one
-instance.")
+(documentation NonNullSet EnglishLanguage "Any &%Set that has at least one
+&%element.")
 
 (=>
    (instance ?SET NonNullSet)
-   (exists (?INST) (instance ?INST ?SET)))
+   (exists (?INST)
+     (element ?INST ?SET)))
 
 (subclass FiniteSet Set)
 
@@ -6481,6 +6490,7 @@ interval of 1/299792458 of a &%SecondDuration.")
 
 (instance SecondDuration UnitOfDuration)
 (instance SecondDuration SystemeInternationalBaseUnit)
+(instance SecondDuration TimeDuration)
 
 (documentation SecondDuration EnglishLanguage "SI &%UnitOfDuration.  Symbol: s.
 It is one of the base units in SI, and it is currently defined as
@@ -6829,6 +6839,7 @@ radiation.  &%Sievert = J/kg = m^2*s^(-2).")
 ; Units that are accepted for -use- with SI
 
 (instance DayDuration UnitOfDuration)
+(instance DayDuration TimeDuration)
 (documentation DayDuration EnglishLanguage "Time unit. 1 day = 24 hours.")
 
 (equal
@@ -6836,7 +6847,7 @@ radiation.  &%Sievert = J/kg = m^2*s^(-2).")
   (MeasureFn (MultiplicationFn ?NUMBER 24) HourDuration))
 
 (instance HourDuration UnitOfDuration)
-
+(instance HourDuration TimeDuration)
 (documentation HourDuration EnglishLanguage "Time unit. 1 hour = 60 minutes.")
 
 (equal
@@ -6844,7 +6855,7 @@ radiation.  &%Sievert = J/kg = m^2*s^(-2).")
   (MeasureFn (MultiplicationFn ?NUMBER 60) MinuteDuration))
 
 (instance MinuteDuration UnitOfDuration)
-
+(instance MinuteDuration TimeDuration)
 (documentation MinuteDuration EnglishLanguage "Time unit. 1 minute = 60 seconds. ")
 
 (equal
@@ -6852,7 +6863,7 @@ radiation.  &%Sievert = J/kg = m^2*s^(-2).")
   (MeasureFn (MultiplicationFn ?NUMBER 60) SecondDuration))
 
 (instance WeekDuration UnitOfDuration)
-
+(instance WeekDuration TimeDuration)
 (documentation WeekDuration EnglishLanguage "Time unit.  A week's duration is seven
 days.")
 
@@ -6861,7 +6872,7 @@ days.")
   (MeasureFn (MultiplicationFn ?NUMBER 7) DayDuration))
 
 (instance MonthDuration UnitOfDuration)
-
+(instance MonthDuration TimeDuration)
 (documentation MonthDuration EnglishLanguage "Time unit.  A month's duration is at least
 28 days, and no more than 31 days.  Note that this unit is a range, rather than
 than an exact amount, unlike most other units.")
@@ -6875,6 +6886,7 @@ than an exact amount, unlike most other units.")
   (MeasureFn (MultiplicationFn ?NUMBER 31) DayDuration))
 
 (instance YearDuration UnitOfDuration)
+(instance YearDuration TimeDuration)
 (documentation YearDuration EnglishLanguage "Time unit. one calendar year. 1 year =
 365 days = 31536000 seconds.")
 
@@ -7844,6 +7856,7 @@ have a &%TimeInterval as a common part.")
   (temporalPart ?SMALL ?BIG))
 
 (instance during TransitiveRelation)
+(instance during BinaryPredicate)
 (instance during IrreflexiveRelation)
 ; (subrelation during overlapsTemporally)
 (domain during 1 TimeInterval)
@@ -8269,6 +8282,7 @@ the 18th day of August 1912.")
    (meetsTemporally ?YEAR1 ?YEAR2))
 
 (instance DecadeDuration UnitOfDuration)
+(instance DecadeDuration TimeDuration)
 (documentation DecadeDuration EnglishLanguage "The &%TimeDuration of 10 years.")
 
 (=>
@@ -8932,7 +8946,7 @@ the number of instances of this &%Class by using the function &%CardinalityFn.")
                (meetsTemporally ?TIME1 ?TIME2))))))
 
 (=>
-   (equal (TemporalCompositionFn ?INTERVAL ?INTERVAL-TYPE) ?CLASS)
+   (equal (TemporalCompositionFn ?INTERVAL ?INTERVALTYPE) ?CLASS)
    (forall (?TIME1)
       (=>
          (and
@@ -9052,6 +9066,7 @@ and not (&%connected ?OBJ2 ?OBJ3).")
 (relatedInternalConcept meetsSpatially connected)
 (instance meetsSpatially IrreflexiveRelation)
 (instance meetsSpatially SymmetricRelation)
+(instance meetsSpatially BinaryPredicate)
 (disjointRelation meetsSpatially overlapsSpatially)
 
 (documentation meetsSpatially EnglishLanguage "(&%meetsSpatially ?OBJ1 ?OBJ2) means that
@@ -9126,6 +9141,7 @@ is a &%part of the other.")
 (instance superficialPart IrreflexiveRelation)
 (instance superficialPart TransitiveRelation)
 (instance superficialPart PartialValuedRelation)
+(instance superficialPart BinaryPredicate)
 (domain superficialPart 1 Object)
 (domain superficialPart 2 Object)
 
@@ -9146,6 +9162,7 @@ is a transitive relation closed under &%MereologicalSumFn and
         (interiorPart ?OBJ3 ?OBJ1)))))
 
 (instance surface AsymmetricRelation)
+(instance surface BinaryPredicate)
 (subrelation surface superficialPart)
 (domain surface 1 SelfConnectedObject)
 (domain surface 2 SelfConnectedObject)
@@ -14975,11 +14992,22 @@ contain elements that are not fabrics.")
 materials that are used to cover the bodies of &%Humans.")
 
 (=>
-   (instance ?CLOTHING Clothing)
-   (exists (?FABRIC)
+  (instance ?CLOTHING Clothing)
+  (modalAttribute
+    (exists (?FABRIC)
       (and
-         (instance ?FABRIC Fabric)
-         (part ?FABRIC ?CLOTHING))))
+        (instance ?FABRIC Fabric)
+        (part ?FABRIC ?CLOTHING)))
+    Likely))
+
+(=>
+  (instance ?CLOTHING Clothing)
+  (hasPurpose ?CLOTHING
+    (exists (?H ?P)
+      (and
+        (instance ?H Animal)
+        (part ?P ?H)
+        (covers ?CLOTHING ?P)))))
 
 (instance wears BinaryPredicate)
 (domain wears 1 Animal)
@@ -15402,6 +15430,7 @@ relationships. (&%familyRelation ?ORGANISM1 ?ORGANISM2) means that
 (instance ancestor TransitiveRelation)
 (instance ancestor IrreflexiveRelation)
 (instance ancestor TotalValuedRelation)
+(instance ancestor BinaryPredicate)
 (domain ancestor 1 Organism)
 (domain ancestor 2 Organism)
 (documentation ancestor EnglishLanguage "The transitive closure of the &%parent predicate.
@@ -15623,6 +15652,7 @@ non-symmetric version of this predicate, &%acquaintance.")
 
 ; (subrelation husband spouse)
 (instance husband AsymmetricRelation)
+(instance husband BinaryPredicate)
 (instance husband IrreflexiveRelation)
 (instance husband PartialValuedRelation)
 (domain husband 1 Man)
@@ -15634,6 +15664,7 @@ husband of ?WOMAN.")
 ; (subrelation wife spouse)
 (instance wife AsymmetricRelation)
 (instance wife IrreflexiveRelation)
+(instance wife BinaryPredicate)
 (domain wife 1 Woman)
 (domain wife 2 Man)
 (documentation wife EnglishLanguage "(&%wife ?WOMAN ?MAN) means that ?WOMAN is the wife of
