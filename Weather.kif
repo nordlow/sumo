@@ -319,14 +319,14 @@ capability of a vehicle.")
 (documentation windDrivenMotion EnglishLanguage "&%windDrivenMotion is an instance of
 &%BinaryPredicate. In (windDrivenMotion ?W ?WM), ?W is the &%Wind that &%causes the &%Motion
  of an &%object located in a &%Region wherethe wind blows. ")
-(format windDrivenMotion EnglishLanguage "%1 causes %2")
+(format EnglishLanguage windDrivenMotion "%1 causes %2")
 (documentation windDrivenMotion ChineseLanguage "&%windDrivenMotion (风力运动) 是一个
 &%BinaryPredicate (二元谓语) 的实例。 在(windDrivenMotion ?W ?WM), ?W 是由 &%Wind (风)所 &%causes 
 (导致)位于风在吹&%Region ()地区上某个&%object (物体)的&%Motion (运动)。")
-(format windDrivenMotion ChineseLanguage "%1 导致 %2")
+(format ChineseLanguage windDrivenMotion "%1 导致 %2")
 (domain windDrivenMotion 1 Wind)
 (domain windDrivenMotion 2 Motion)
-(instance  windDrivenMotion BinaryPredicate)
+(instance windDrivenMotion BinaryPredicate)
 
 (=>
   (windDrivenMotion ?W ?WM)
@@ -365,27 +365,27 @@ related to wind speed ranges.")
         (surfaceWindSpeed ?AREA 
           (MeasureFn ?SPEED ?U))))))
 
-(documentation BeaufortNumber0 Englishlanguage "The estimated &%surfaceWindSpeed for 
+(documentation BeaufortNumber0 EnglishLanguage "The estimated &%surfaceWindSpeed for 
 &%BeaufortNumber0 is less than 1 &%MilesPerHour (2 km/h).")
-(documentation BeaufortNumber0 Chineselanguage "&%BeaufortNumber0 (浦氏0风级)的 预计
+(documentation BeaufortNumber0 ChineseLanguage "&%BeaufortNumber0 (浦氏0风级)的 预计
 &%surfaceWindSpeed (地面风速)少于1 &%MilesPerHour (每小时英里)即(2 km/h).")
 (instance BeaufortNumber0 BeaufortNumberAttribute)
 (successorAttribute BeaufortNumber0 BeaufortNumber1)
 
 (speedScaleAttributeMinMax BeaufortNumber0 (MeasureFn 0 MilesPerHour) (MeasureFn 1 MilesPerHour))
 
-(documentation BeaufortNumber1 Englishlanguage "The estimated &%surfaceWindSpeed for 
+(documentation BeaufortNumber1 EnglishLanguage "The estimated &%surfaceWindSpeed for 
 &%BeaufortNumber1 ranges between 1 and 3 &%MilesPerHour (2-5 km/h).")
-(documentation BeaufortNumber1 Chineselanguage "&%BeaufortNumber1 (浦氏1风级)的 预计
+(documentation BeaufortNumber1 ChineseLanguage "&%BeaufortNumber1 (浦氏1风级)的 预计
 &%surfaceWindSpeed (地面风速)1 到 3 &%MilesPerHour (每小时英里)即(2-5 km/h).")
 (instance BeaufortNumber1 BeaufortNumberAttribute)
 (successorAttribute BeaufortNumber1 BeaufortNumber2)
 
 (speedScaleAttributeMinMax BeaufortNumber1 (MeasureFn 1 MilesPerHour) (MeasureFn 3 MilesPerHour))
 
-(documentation BeaufortNumber2 Englishlanguage "The estimated &%surfaceWindSpeed for 
+(documentation BeaufortNumber2 EnglishLanguage "The estimated &%surfaceWindSpeed for 
 &%BeaufortNumber2 ranges between 4 and 7 &%MilesPerHour (6 and 11 km/h).")
-(documentation BeaufortNumber2 Chineselanguage "&%BeaufortNumber2 (浦氏2风级)的 预计
+(documentation BeaufortNumber2 ChineseLanguage "&%BeaufortNumber2 (浦氏2风级)的 预计
 &%surfaceWindSpeed (地面风速)4 到 7 &%MilesPerHour (每小时英里)即(6-11km/h).")
 (instance BeaufortNumber2 BeaufortNumberAttribute)
 (successorAttribute BeaufortNumber2 BeaufortNumber3)
@@ -393,81 +393,81 @@ related to wind speed ranges.")
 (speedScaleAttributeMinMax BeaufortNumber2 (MeasureFn 4 MilesPerHour) (MeasureFn 7 MilesPerHour))
 
 
-(documentation BeaufortNumber3 Englishlanguage "The estimated &%surfaceWindSpeed for 
+(documentation BeaufortNumber3 EnglishLanguage "The estimated &%surfaceWindSpeed for 
 &%BeaufortNumber3 ranges between 8 and 12 &%MilesPerHour (12 and 19 km/h).")
-(documentation BeaufortNumber3 Chineselanguage "&%BeaufortNumber3 (浦氏3风级)的 预计
+(documentation BeaufortNumber3 ChineseLanguage "&%BeaufortNumber3 (浦氏3风级)的 预计
 &%surfaceWindSpeed (地面风速)8 到 12 &%MilesPerHour (每小时英里)即(12-19 km/h).")
 (instance BeaufortNumber3 BeaufortNumberAttribute)
 (successorAttribute BeaufortNumber3 BeaufortNumber4)
 
 (speedScaleAttributeMinMax BeaufortNumber3 (MeasureFn 8 MilesPerHour) (MeasureFn 12 MilesPerHour))
 
-(documentation BeaufortNumber4 Englishlanguage "The estimated &%surfaceWindSpeed for 
+(documentation BeaufortNumber4 EnglishLanguage "The estimated &%surfaceWindSpeed for 
 &%BeaufortNumber4 ranges between 13 and 18 &%MilesPerHour (20 and 28 km/h).")
-(documentation BeaufortNumber4 Chineselanguage "&%BeaufortNumber4 (浦氏4风级)的 预计
+(documentation BeaufortNumber4 ChineseLanguage "&%BeaufortNumber4 (浦氏4风级)的 预计
 &%surfaceWindSpeed (地面风速)13 到 18 &%MilesPerHour (每小时英里)即(20-28 km/h).")
 (instance BeaufortNumber4 BeaufortNumberAttribute)
 (successorAttribute BeaufortNumber4 BeaufortNumber5)
 
 (speedScaleAttributeMinMax BeaufortNumber4 (MeasureFn 13 MilesPerHour) (MeasureFn 18 MilesPerHour))
 
-(documentation BeaufortNumber5 Englishlanguage "The estimated &%surfaceWindSpeed for 
+(documentation BeaufortNumber5 EnglishLanguage "The estimated &%surfaceWindSpeed for 
 &%BeaufortNumber5 ranges between 19 and 24 &%MilesPerHour (29 and 38 km/h).")
-(documentation BeaufortNumber5 Chineselanguage "&%BeaufortNumber5 (浦氏5风级)的 预计
+(documentation BeaufortNumber5 ChineseLanguage "&%BeaufortNumber5 (浦氏5风级)的 预计
 &%surfaceWindSpeed (地面风速)19 到 24 &%MilesPerHour (每小时英里)即(29-38 km/h).")
 (instance BeaufortNumber5 BeaufortNumberAttribute)
 (successorAttribute BeaufortNumber5 BeaufortNumber6)
 
 (speedScaleAttributeMinMax BeaufortNumber5 (MeasureFn 19 MilesPerHour) (MeasureFn 24 MilesPerHour))
 
-(documentation BeaufortNumber6 Englishlanguage "The estimated &%surfaceWindSpeed for 
+(documentation BeaufortNumber6 EnglishLanguage "The estimated &%surfaceWindSpeed for 
 &%BeaufortNumber6 ranges between 25 and 31 &%MilesPerHour (39 and 49 km/h).")
-(documentation BeaufortNumber6 Chineselanguage "&%BeaufortNumber6 (浦氏6风级)的 预计
+(documentation BeaufortNumber6 ChineseLanguage "&%BeaufortNumber6 (浦氏6风级)的 预计
 &%surfaceWindSpeed (地面风速)25 到 31 &%MilesPerHour (每小时英里)即(39-49 km/h).")
 (instance BeaufortNumber6 BeaufortNumberAttribute)
 (successorAttribute BeaufortNumber6 BeaufortNumber7)
 
 (speedScaleAttributeMinMax BeaufortNumber6 (MeasureFn 25 MilesPerHour) (MeasureFn 31 MilesPerHour))
 
-(documentation BeaufortNumber7 Englishlanguage "The estimated &%surfaceWindSpeed for 
+(documentation BeaufortNumber7 EnglishLanguage "The estimated &%surfaceWindSpeed for 
 &%BeaufortNumber7 ranges between 32 and 38 &%MilesPerHour (50 and 61 km/h).")
-(documentation BeaufortNumber7 Chineselanguage "&%BeaufortNumber7 (浦氏7风级)的 预计
+(documentation BeaufortNumber7 ChineseLanguage "&%BeaufortNumber7 (浦氏7风级)的 预计
 &%surfaceWindSpeed (地面风速)32 到 38 &%MilesPerHour (每小时英里)即(50-61 km/h).")
 (instance BeaufortNumber7 BeaufortNumberAttribute)
 (successorAttribute BeaufortNumber7 BeaufortNumber8)
 
 (speedScaleAttributeMinMax BeaufortNumber7 (MeasureFn 32 MilesPerHour) (MeasureFn 38 MilesPerHour))
 
-(documentation BeaufortNumber8 Englishlanguage "The estimated &%surfaceWindSpeed for 
+(documentation BeaufortNumber8 EnglishLanguage "The estimated &%surfaceWindSpeed for 
 &%BeaufortNumber8 ranges between 39 and 46 &%MilesPerHour (62 and 74 km/h).")
-(documentation BeaufortNumber8 Chineselanguage "&%BeaufortNumber8 (浦氏8风级)的 预计
+(documentation BeaufortNumber8 ChineseLanguage "&%BeaufortNumber8 (浦氏8风级)的 预计
 &%surfaceWindSpeed (地面风速)39 到 46 &%MilesPerHour (每小时英里)即(62-74 km/h).")
 (instance BeaufortNumber8 BeaufortNumberAttribute)
 (successorAttribute BeaufortNumber8 BeaufortNumber9)
 
 (speedScaleAttributeMinMax BeaufortNumber8 (MeasureFn 39 MilesPerHour) (MeasureFn 46 MilesPerHour))
 
-(documentation BeaufortNumber9 Englishlanguage "The estimated &%surfaceWindSpeed for 
+(documentation BeaufortNumber9 EnglishLanguage "The estimated &%surfaceWindSpeed for 
 &%BeaufortNumber9 ranges between 47 and 54 &%MilesPerHour (75 and 88 km/h).")
-(documentation BeaufortNumber9 Chineselanguage "&%BeaufortNumber9 (浦氏9风级)的 预计
+(documentation BeaufortNumber9 ChineseLanguage "&%BeaufortNumber9 (浦氏9风级)的 预计
 &%surfaceWindSpeed (地面风速)47 到 54 &%MilesPerHour (每小时英里)即(75-88 km/h).")
 (instance BeaufortNumber9 BeaufortNumberAttribute)
 (successorAttribute BeaufortNumber9 BeaufortNumber10)
 
 (speedScaleAttributeMinMax BeaufortNumber9 (MeasureFn 47 MilesPerHour) (MeasureFn 54 MilesPerHour))
 
-(documentation BeaufortNumber10 Englishlanguage "The estimated &%surfaceWindSpeed for 
+(documentation BeaufortNumber10 EnglishLanguage "The estimated &%surfaceWindSpeed for 
 &%BeaufortNumber10 ranges between 55 and 63 &%MilesPerHour (89 and 102 km/h).")
-(documentation BeaufortNumber10 Chineselanguage "&%BeaufortNumber10 (浦氏10风级)的 预计
+(documentation BeaufortNumber10 ChineseLanguage "&%BeaufortNumber10 (浦氏10风级)的 预计
 &%surfaceWindSpeed (地面风速)55 到 63 &%MilesPerHour (每小时英里)即(89-102 km/h).")
 (instance BeaufortNumber10 BeaufortNumberAttribute)
 (successorAttribute BeaufortNumber10 BeaufortNumber11)
 
 (speedScaleAttributeMinMax BeaufortNumber10 (MeasureFn 55 MilesPerHour) (MeasureFn 63 MilesPerHour))
 
-(documentation BeaufortNumber11 Englishlanguage "The estimated &%surfaceWindSpeed for 
+(documentation BeaufortNumber11 EnglishLanguage "The estimated &%surfaceWindSpeed for 
 &%BeaufortNumber11 ranges between 64 and 72 &%MilesPerHour (103 and 117 km/h).")
-(documentation BeaufortNumber11 Chineselanguage "&%BeaufortNumber11 (浦氏11风级)的 预计
+(documentation BeaufortNumber11 ChineseLanguage "&%BeaufortNumber11 (浦氏11风级)的 预计
 &%surfaceWindSpeed (地面风速)64 到 372&%MilesPerHour (每小时英里)即(103-117 km/h).")
 (instance BeaufortNumber11 BeaufortNumberAttribute)
 (successorAttribute BeaufortNumber11 BeaufortNumber12)
@@ -475,9 +475,9 @@ related to wind speed ranges.")
 (speedScaleAttributeMinMax BeaufortNumber11 (MeasureFn 64 MilesPerHour) (MeasureFn 72 MilesPerHour))
 
 
-(documentation BeaufortNumber12 Englishlanguage "The estimated &%surfaceWindSpeed for 
+(documentation BeaufortNumber12 EnglishLanguage "The estimated &%surfaceWindSpeed for 
 &%BeaufortNumber12 is over 73 &%MilesPerHour (118 km/h).")
-(documentation BeaufortNumber12 Chineselanguage "&%BeaufortNumber12 (浦氏12风级)的 预计
+(documentation BeaufortNumber12 ChineseLanguage "&%BeaufortNumber12 (浦氏12风级)的 预计
 &%surfaceWindSpeed (地面风速) 大于73 &%MilesPerHour (每小时英里)即(118 km/h).")
 (instance BeaufortNumber12 BeaufortNumberAttribute)
 
@@ -613,7 +613,7 @@ https://www.metoffice.gov.uk/research/weather/tropical-cyclones/facts")
 (>25 mph)程度或更高的风速。整个系统通常以每小时10-15英里 （10-15 mph）向前移动，可是有时候也会
 保持停留不动，或是移动速度快达每小时40英里 （40 mph)。
 https://www.metoffice.gov.uk/research/weather/tropical-cyclones/facts")
-(termFormat EnglishLangauge TropicalCyclonicSystem "tropical cyclonic system")
+(termFormat EnglishLanguage TropicalCyclonicSystem "tropical cyclonic system")
 (termFormat ChineseLanguage TropicalCyclonicSystem "热带氣旋系统")
 
 (=>
@@ -654,7 +654,7 @@ Typhoon Warning Center (JTWC) and the Central Pacific Hurricane Center (CPHC).")
 是等级形态最弱的热带氣旋系统(&%TropicalCyclonicSystem), 根据美國的國家颶風中心(NHC)、
 夏威夷州的中太平洋颶風中心(CPHC)和聯合颱風警報中心的标准，它的一分钟平均风速可达
 每小时38英里（&%MilesPerHour ）。")
-(termFormat EnglishLangauge TropicalDepression "tropical depression")
+(termFormat EnglishLanguage TropicalDepression "tropical depression")
 (termFormat ChineseLanguage TropicalDepression "热带低气压")
 
 (=>
@@ -675,7 +675,7 @@ for &%TropicalCyclonicSystems with 1-minute sustained winds of 44 &%MilesPerHour
 (mph)or higher.")
 (documentation TropicalCyclone ChineseLanguage "&%TropicalCyclone 热带气旋是
 热带氣旋系统的一个统称，它的一分钟平均风速一般达每小时44英里（&%MilesPerHour）或更高的风速。")
-(termFormat EnglishLangauge TropicalCyclone "tropical cyclone")
+(termFormat EnglishLanguage TropicalCyclone "tropical cyclone")
 (termFormat ChineseLanguage TropicalCyclone "热带气旋")
 
 (=>
@@ -710,7 +710,7 @@ for &%TropicalCyclonicSystems with 1-minute sustained winds of 44 &%MilesPerHour
 with 1-minute sustained winds ranging between 39 and 72 &%MilesPerHour.")
 (documentation TropicalStorm ChineseLanguage "热带风暴(&%TropicalStorm)是一分钟平均风速
 在每小时39和74英里(&%MilesPerHour)之间的热带氣旋系统(&%TropicalCyclonicSystem)。")
-(termFormat EnglishLangauge TropicalStorm "tropical storm")
+(termFormat EnglishLanguage TropicalStorm "tropical storm")
 (termFormat ChineseLanguage TropicalStorm "热带风暴")
 
 (=>
@@ -734,7 +734,7 @@ based on the &%SSHWSAttribute (Saffir-Simpson hurricane wind scale).")
 或北大西洋(&%NorthAtlanticOcean)形成、1分钟平均地面风速(&%Mean1MinuteWindSpeedFn) 达到或高于每小时74英里
 (&%MilesPerHour)的热带气旋(&%TropicalCyclone)。按照萨菲尔辛普森飓风风力等级(&%SSHWSAttribute)可分为五个等级。")
 (subclass Hurricane TropicalCyclonicSystem) 
-(termFormat EnglishLangauge Hurricane "hurricane")
+(termFormat EnglishLanguage Hurricane "hurricane")
 (termFormat ChineseLanguage Hurricane "颶風")
 
 (=>
@@ -768,7 +768,7 @@ formed in &%NorthwesternPacificOcean.")
 (documentation Typhoon ChineseLanguage "颱風（&%Typhoon）是10分钟平均地面风速(&%Mean10MinutesWindSpeedFn) 
 达到或高于每小时64 英里(&%MilesPerHour)在西北太平洋(&%NorthwesternPacificOcean)的热带气旋(&%TropicalCyclone)。")
 (subclass Typhoon TropicalCyclonicSystem)
-(termFormat EnglishLangauge Typhoon "typhoon")
+(termFormat EnglishLanguage Typhoon "typhoon")
 (termFormat ChineseLanguage Typhoon "颱風")
 
 (=>
@@ -1446,7 +1446,7 @@ where a ?WW (&%WaterWave) takes place.")
 (domain VarianceAverageFn 2 List)
 (instance VarianceAverageFn BinaryFunction)
 
-(format Englishlanguage VarianceAverageFn "&%VarianceAverageFn of %2 with the mean of %1")
+(format EnglishLanguage VarianceAverageFn "&%VarianceAverageFn of %2 with the mean of %1")
 (range VarianceAverageFn Number)
 
 (=>
@@ -1495,9 +1495,9 @@ The numerical variance computates over values in an entire population.")
       (SubtractionFn ?M
         (ListOrderFn ?L 1)))))
 
-(documentation StandardDeviationFn EnglishLangauge "It is a &%UnaryFunction to return the standard deviation of a &%List of numbers. Standard
+(documentation StandardDeviationFn EnglishLanguage "It is a &%UnaryFunction to return the standard deviation of a &%List of numbers. Standard
 deviation measures the amount of variation or dispersion of the numbers in the list. It is the &%SquareRootFn of the variance of the list.")
-(documentation StandardDeviationFn ChineseLangauge "这是一个 &%UnaryFunction，它计算出一个 &%List 内的数值的标准偏差。标准偏差量度 &%List 内数值的
+(documentation StandardDeviationFn ChineseLanguage "这是一个 &%UnaryFunction，它计算出一个 &%List 内的数值的标准偏差。标准偏差量度 &%List 内数值的
 偏差或弥散度，是该序列方差值的 &%SquareRootFn。")
 (domain StandardDeviationFn 1 List)
 (instance StandardDeviationFn UnaryFunction)
@@ -2110,11 +2110,11 @@ have wind gusts ranging between 65 to 85 mph,and the severest &%Tornades (EF5)
 &%TernaryRelation which specifies the range of speeds for a speed scale attribute. 
 (speedScaleAttributeMinMax ?ATTR ?MIN ?MAX) where ?ATTR is an instance of &%SpeedScaleAttribute and
 ?MIN is the minimum speed and ?MAX is the maximum speed. ")
-(format speedScaleAttributeMinMax EnglishLanguage "%2 and %3 are the min and max speed of %1")
+(format EnglishLanguage speedScaleAttributeMinMax "%2 and %3 are the min and max speed of %1")
 (documentation speedScaleAttributeMinMax ChineseLanguage " &%speedScaleAttributeMinMax (时速级数属性最低最高)
 是一个 &%TernaryRelation，它为一个时速级数属性设定一个范畴。在(speedScaleAttributeMinMax ?ATTR ?MIN ?MAX) 里， 
 ?ATTR  &%SpeedScaleAttribute (时速级数属性)的一个例子，?MIN 是最低速度 the minimum speed 而 ?MAX 是最高速度。")
-(format speedScaleAttributeMinMax ChineseLanguage "%1 的最低和最高是 %2 和 %3")
+(format ChineseLanguage speedScaleAttributeMinMax  "%1 的最低和最高是 %2 和 %3")
 (domain speedScaleAttributeMinMax 1 SpeedScaleAttribute)
 (domain speedScaleAttributeMinMax 2 FunctionQuantity)
 (domain speedScaleAttributeMinMax 3 FunctionQuantity)
@@ -2344,9 +2344,9 @@ of a &%Hurricane based on the highest wind speed averaged over a one-minute inte
 (documentation SSHWSAttribute ChineseLanguage "&%SSHWSAttribute 是萨菲尔辛普森飓风风力等级
 的缩写。这是以距离地面10米高，最高的一分钟平均风速(&%Mean1MinuteWindSpeedFn)
 用来评估一个台风（&%Hurricane）强弱程度的属性 （&%Attribute）。")
-(termFormat SSHWSAttribute EnglishLanguage "SSHWS attribute")
-(termFormat SSHWSAttribute EnglishLanguage "Saffir Simpson Hurrican wind scale")
-(termFormat SSHWSAttribute ChineseLanguage "萨菲尔辛普森飓风风力等级")
+(termFormat EnglishLanguage SSHWSAttribute "SSHWS attribute")
+(termFormat EnglishLanguage SSHWSAttribute "Saffir Simpson Hurrican wind scale")
+(termFormat ChineseLanguage SSHWSAttribute "萨菲尔辛普森飓风风力等级")
 (subclass SSHWSAttribute SpeedScaleAttribute)
 
 (=>
@@ -2381,8 +2381,8 @@ of a &%Hurricane based on the highest wind speed averaged over a one-minute inte
 74 and 95 mph (119-153 km/h).")
 (documentation SSHWS1 ChineseLanguage "萨菲尔辛普森飓风1 (SSHWS1)级别的台风(&%Hurricane)
 估计它的一分钟平均风速 (&%Mean1MinuteWindSpeedFn) 在 74 到 95 mph（119-153 km/h）。")
-(termFormat SSHWS1 EnglishLanguage "SSHWS1")
-(termFormat SSHWS1 ChineseLanguage "萨菲尔辛普森飓风1")
+(termFormat EnglishLanguage SSHWS1 "SSHWS1")
+(termFormat ChineseLanguage SSHWS1 "萨菲尔辛普森飓风1")
 (instance SSHWS1 SSHWSAttribute)
 (sucessorAttribute SSHWS1 SSHWS2)
 
@@ -2393,8 +2393,8 @@ of a &%Hurricane based on the highest wind speed averaged over a one-minute inte
 96 and 110 mph (154-177 km/h).")
 (documentation SSHWS2 ChineseLanguage "萨菲尔辛普森飓风2 (SSHWS2)级别的台风(&%Hurricane)
 估计它的一分钟平均风速 (&%Mean1MinuteWindSpeedFn) 在 96 到 110 mph（154-177 km/h）。")
-(termFormat SSHWS2 EnglishLanguage "SSHWS2")
-(termFormat SSHWS2 ChineseLanguage "萨菲尔辛普森飓风2")
+(termFormat EnglishLanguage SSHWS2 "SSHWS2")
+(termFormat ChineseLanguage SSHWS2 "萨菲尔辛普森飓风2")
 (instance SSHWS2 SSHWSAttribute)
 (sucessorAttribute SSHWS2 SSHWS3)
 
@@ -2405,8 +2405,8 @@ of a &%Hurricane based on the highest wind speed averaged over a one-minute inte
 111 and 129 mph (178-208 km/h).")
 (documentation SSHWS3 ChineseLanguage "萨菲尔辛普森飓风3 (SSHWS3)级别的台风(&%Hurricane)
 估计它的一分钟平均风速 (&%Mean1MinuteWindSpeedFn) 在 111 到 129 mph（178-208 km/h）。")
-(termFormat SSHWS3 EnglishLanguage "SSHWS3")
-(termFormat SSHWS3 ChineseLanguage "萨菲尔辛普森飓风3")
+(termFormat EnglishLanguage SSHWS3 "SSHWS3")
+(termFormat ChineseLanguage SSHWS3 "萨菲尔辛普森飓风3")
 (instance SSHWS3 SSHWSAttribute)
 (sucessorAttribute SSHWS3 SSHWS4)
 
@@ -2417,8 +2417,8 @@ of a &%Hurricane based on the highest wind speed averaged over a one-minute inte
 130 and 156 mph (209-251 km/h).")
 (documentation SSHWS4 ChineseLanguage "萨菲尔辛普森飓风4 (SSHWS4)级别的台风(&%Hurricane)
 估计它的一分钟平均风速 (&%Mean1MinuteWindSpeedFn) 在 130 到 156 mph（209-251 km/h）。")
-(termFormat SSHWS4 EnglishLanguage "SSHWS4")
-(termFormat SSHWS4 ChineseLanguage "萨菲尔辛普森飓风4")
+(termFormat EnglishLanguage SSHWS4 "SSHWS4")
+(termFormat ChineseLanguage SSHWS4 "萨菲尔辛普森飓风4")
 (instance SSHWS4 SSHWSAttribute)
 (sucessorAttribute SSHWS4 SSHWS5)
 
@@ -2429,8 +2429,8 @@ of a &%Hurricane based on the highest wind speed averaged over a one-minute inte
 157 mph (252 km/h).")
 (documentation SSHWS5 ChineseLanguage "萨菲尔辛普森飓风5 (SSHWS5)级别的台风(&%Hurricane)
 估计它的一分钟平均风速 (&%Mean1MinuteWindSpeedFn) 大于 157 mph(252 km/h）。")
-(termFormat SSHWS5 EnglishLanguage "SSHWS5")
-(termFormat SSHWS5 ChineseLanguage "萨菲尔辛普森飓风5")
+(termFormat EnglishLanguage SSHWS5 "SSHWS5")
+(termFormat ChineseLanguage SSHWS5 "萨菲尔辛普森飓风5")
 (instance SSHWS5 SSHWSAttribute)
 
 (=>
